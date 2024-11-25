@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Bienvenidos al Foro</h1>
+    <p id="saludo"></p>
+    <script>
+        let nombre = prompt("¿Cuál es tu nombre?");
+        let fecha = new Date().toLocaleDateString();
+        document.getElementById("saludo").innerText = "¡Hola, " + nombre + "! Bienvenido al foro. Hoy es " + fecha ;
+    </script>
+</body>
+</html>
