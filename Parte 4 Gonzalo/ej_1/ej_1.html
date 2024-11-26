@@ -5,12 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Bienvenidos al Foro</h1>
-    <p id="saludo"></p>
+    <button id="btn">Haz clic en mí</button>
+    <p id="mensaje"></p>
+
     <script>
-        let nombre = prompt("¿Cuál es tu nombre?");
-        let fecha = new Date().toLocaleDateString();
-        document.getElementById("saludo").innerText = "¡Hola, " + nombre + "! Bienvenido al foro. Hoy es " + fecha ;
+        
+        function generarColorAleatorio() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+
+        const boton = document.getElementById("btn");
+        const mensaje = document.getElementById("mensaje");
+
+        boton.addEventListener("click", () => {
+            mensaje.innerText = "¡Hiciste clic en el botón!";
+        });
+
+        boton.addEventListener("mouseover", () => {
+            mensaje.innerText = "Estás sobre el botón";
+        });
+
+        boton.addEventListener("mouseout", () => {
+            mensaje.innerText = "El cursor ha salido del botón";
+        });
+        
+        boton.addEventListener("dblclick", () => {
+            boton.style.backgroundColor = generarColorAleatorio();
+        });
+
     </script>
 </body>
 </html>
