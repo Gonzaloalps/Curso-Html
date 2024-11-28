@@ -5,30 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <form id="formulario">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" required>
-        <br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-        <br><br>
-        <button type="submit">Enviar</button>
-    </form>
-    <p id="resultado"></p>
+    <p id="contador">Tiempo: 10 segundos</p>
+    <p id="mensaje"></p>
 
     <script>
-        document.getElementById("formulario").addEventListener("submit", function(event) {
-            event.preventDefault();
+        let tiempo = 10;
 
-            let nombre = document.getElementById("nombre").value;
-            let email = document.getElementById("email").value;
+    
+        let intervalo = setInterval(() => {
+            tiempo -= 1; 
 
-            if (nombre === "" || email === "") {
-                document.getElementById("resultado").innerText = "Por favor, completa todos los campos.";
-            } else {
-                document.getElementById("resultado").innerText = "¡Gracias, " + nombre + "! Hemos recibido tu email: " + email + ".";
+            document.getElementById("contador").innerText = `Tiempo: ${tiempo} segundos`;
+
+            if (tiempo === 0) {
+                clearInterval(intervalo);
+                document.getElementById("mensaje").innerText = "¡El tiempo ha terminado!";
             }
-        });
-    </script>   
+        }, 1000); 
+    </script>
 </body>
 </html>
