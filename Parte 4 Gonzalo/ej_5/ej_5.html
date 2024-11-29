@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="lista">
+        <button id="crearBoton">Crear nuevo botón</button>
+    </div>
+    
+    <script>
+        // Agregar un evento al botón "crearBoton" para crear un nuevo botón al hacer clic
+        document.getElementById("crearBoton").addEventListener("click", () => {
+            // Crear un nuevo botón
+            let nuevoBoton = document.createElement("button");
+            nuevoBoton.classList.add("item"); // Añadir la clase 'item' al botón
+            nuevoBoton.innerText = "Nuevo botón"; // Establecer el texto del nuevo botón
+    
+            // Agregar el nuevo botón al contenedor
+            document.getElementById("lista").appendChild(nuevoBoton);
+        });
+    
+        // Delegación de eventos para manejar los clics en los botones dinámicos
+        document.getElementById("lista").addEventListener("click", (event) => {
+            // Verificamos si el clic fue en un botón con la clase 'item'
+            if (event.target.classList.contains("item")) {
+                alert("Has hecho clic en: " + event.target.innerText);
+            }
+        });
+    </script>
+    
+</body>
+</html>

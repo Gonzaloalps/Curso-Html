@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Ejemplo</title>
 </head>
 <body>
-    <input type="text" id="entrada" placeholder="Escribe algo">
-    <p id="texto"></p>
+    <h1>Datos del servidor</h1>
+    <button id="obtenerDatos">Obtener datos</button>
+    <pre id="resultado"></pre>
 
-    <script>
-        const entrada = document.getElementById("entrada");
-        const texto = document.getElementById("texto");
     
-        entrada.addEventListener("keydown", (event) => {
-            texto.innerText = `Has presionado la tecla: ${event.key}`;
-            
-            if (event.key === "Enter") {
-                texto.innerText = "Enter hace una cosa diferente";
-            }
+<script>
+        document.getElementById("obtenerDatos").addEventListener("click", () => {
+            fetch("http://127.0.0.1:5000/datos")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("resultado").innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error("Error al obtener los datos:", error);
+                });
         });
     </script>
 </body>
