@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="foro">
+        <p>Bienvenidos al Foro</p>
+        
+        <textarea id="inputMensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <button id="nuevoMensaje">Agregar Mensaje</button>
+        <button id="cargarMas">Cargar Más Mensajes</button>
+        
+        <div id="mensajes"></div>
+        <div id="notificaciones"></div>
+    </div>
+    
+    <script>
+        const mensajes = document.getElementById("mensajes");
+        const notificaciones = document.getElementById("notificaciones");
+        const inputMensaje = document.getElementById("inputMensaje");
+    
+        function mostrarNotificacion(texto) {
+            const notificacion = document.createElement("div");
+            notificacion.classList.add("notificacion");
+            notificacion.innerText = texto;
+            notificaciones.appendChild(notificacion);
+    
+            setTimeout(() => {
+                notificacion.remove();
+            }, 3000);
+        }
+    
+        document.getElementById("nuevoMensaje").addEventListener("click", () => {
+            const mensajeTexto = inputMensaje.value.trim(); 
+    
+            if (mensajeTexto === "") {
+                mostrarNotificacion("Por favor, escribe un mensaje.");
+                return;
+            }
+
+            const mensaje = document.createElement("div");
+            mensaje.classList.add("mensaje");
+            mensaje.innerText = mensajeTexto; 
+    
+            const eliminarBtn = document.createElement("button");
+            eliminarBtn.innerText = "Eliminar";
+            mensaje.appendChild(eliminarBtn);
+    
+            const importanteBtn = document.createElement("button");
+            importanteBtn.innerText = "Marcar como importante";
+            mensaje.appendChild(importanteBtn);
+    
+            mensajes.appendChild(mensaje);
+    
+            inputMensaje.value = "";
+    
+            mostrarNotificacion("Nuevo mensaje añadido");
+        });
+    
+        mensajes.addEventListener("click", (event) => {
+            const target = event.target;
+    
+            if (target.innerText === "Eliminar") {
+                target.parentNode.remove();
+            }
+    
+            if (target.innerText === "Marcar como importante") {
+                target.parentNode.style.backgroundColor = "yellow"; 
+            }
+        });
+    
+        document.getElementById("cargarMas").addEventListener("click", () => {
+            for (let i = 0; i < 5; i++) {
+                const mensaje = document.createElement("div");
+                mensaje.classList.add("mensaje");
+                mensaje.innerHTML = `Mensaje adicional #${mensajes.children.length + 1}`;
+    
+                const eliminarBtn = document.createElement("button");
+                eliminarBtn.innerText = "Eliminar";
+                mensaje.appendChild(eliminarBtn);
+    
+                const importanteBtn = document.createElement("button");
+                importanteBtn.innerText = "Marcar como importante";
+                mensaje.appendChild(importanteBtn);
+    
+                mensajes.appendChild(mensaje);
+            }
+    
+            mostrarNotificacion("Se han cargado más mensajes");
+        });
+    </script>
+    
+    <style>
+        .mensaje {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px;
+        }
+    
+        .mensaje button {
+            margin-left: 10px;
+        }
+    
+        .notificacion {
+            background-color: #26af2d;
+            color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</body>
+</html>

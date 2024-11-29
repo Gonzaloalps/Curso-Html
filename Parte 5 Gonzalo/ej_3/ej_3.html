@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <p id="contador">Tiempo: 10 segundos</p>
+    <p id="mensaje"></p>
+
+    <script>
+        let tiempo = 10;
+
+    
+        let intervalo = setInterval(() => {
+            tiempo -= 1; 
+
+            document.getElementById("contador").innerText = `Tiempo: ${tiempo} segundos`;
+
+            if (tiempo === 0) {
+                clearInterval(intervalo);
+                document.getElementById("mensaje").innerText = "¡El tiempo ha terminado!";
+            }
+        }, 1000); 
+    </script>
+</body>
+</html>
